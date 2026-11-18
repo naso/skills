@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "skills",
+  "compatibility_date": "2026-11-15",
+  // Static files only: the page and each skill's files, for agents to download.
+  "assets": { "directory": "./dist" },
+  "routes": [{ "pattern": "skills.fabio.cv", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+}

@@ -3,6 +3,11 @@
 Interface, interaction design and UX skills for coding agents, grouped by
 kind. Each is a folder in `skills/<kind>/`, with its `SKILL.md`.
 
+[`site/`](site) is the minisite at https://skills.fabio.cv. It lists each
+skill with its `metadata.summary` and serves its files for the install prompt,
+so a new skill shows there once the site is built and deployed:
+`pnpm install && pnpm run deploy` in `site/`.
+
 ## Interaction design
 
 How an interface behaves under the hand: tracking, resistance, springs and the

@@ -1,6 +1,8 @@
 ---
 name: resizable-panels
 description: Resizable panels, how the line between two panels behaves under drag, in any stack — it stays under the pointer, resists near a side's minimum, closes the side past it, opens it freely, and moves on springs. Use when building, fixing or tuning a split view, a draggable divider, or a sidebar that collapses on drag.
+metadata:
+  summary: How the line between two panels behaves under drag. It stays under the pointer, resists near a minimum, closes past it, opens freely and moves on springs.
 ---
 
 # Resizable panels
