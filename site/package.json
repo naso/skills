@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build && vite build --ssr src/server.tsx --outDir dist-server && node scripts/prerender.js",
     "check-types": "tsc --noEmit",
+    "images": "node scripts/images.js",
     "deploy": "pnpm build && wrangler deploy"
   },
   "devDependencies": {

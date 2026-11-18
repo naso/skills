@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 
 import { HomePage, SUMMARY } from './home';
+import { OG } from './images';
 import { SkillsLogo } from './logos';
 import { SITE } from './skills';
 
@@ -22,6 +23,10 @@ export function render() {
       `<meta property="og:title" content="Skills" />`,
       `<meta property="og:description" content="${escape(SUMMARY)}" />`,
       `<meta property="og:url" content="${SITE}/" />`,
+      `<meta property="og:image" content="${SITE}/og.png" />`,
+      `<meta property="og:image:width" content="${OG.width}" />`,
+      `<meta property="og:image:height" content="${OG.height}" />`,
+      `<meta property="og:image:alt" content="${escape(`Skills: ${SUMMARY}`)}" />`,
       `<link rel="canonical" href="${SITE}/" />`,
       `<link rel="icon" href="/favicon.svg" type="image/svg+xml" />`,
     ].join('\n    '),
