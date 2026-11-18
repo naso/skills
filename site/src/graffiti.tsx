@@ -133,10 +133,13 @@ const NUDGE = 24;
 const NARROW = '(max-width: 879px)';
 
 /**
- * Above the opening, the room under the header and over its text, each side
- * of the letters, as the stylesheet makes it.
+ * Above the opening, the room between the letters and its text. The
+ * stylesheet makes 60px in all, which leaves 4px under the header.
  */
-const ABOVE = 30;
+const ABOVE = 56;
+
+/** Above the opening, how far in from its text's left edge it starts. */
+const INDENT = 16;
 
 /** How long the hand pauses to swap cans before the smiley, in seconds. */
 const SWAP = 0.7;
@@ -280,12 +283,16 @@ export function Graffiti({ text }: { text: string }) {
       // Sprayed in the first time it shows.
       if (!painted) paint(!still.matches);
       painted = true;
-      const x = from + (room - wide * fit) / 2 + (above ? 0 : NUDGE);
+      // Above the opening, it starts a little in from its text.
+      const x = above
+        ? from + Math.min(INDENT, room - wide * fit)
+        : from + (room - wide * fit) / 2 + NUDGE;
       const y = above
         ? opening.top - ABOVE - tall * fit
         : (level.top + level.bottom - tall * fit) / 2;
-      // Never above the page, where a reload would scroll to its top.
-      const at = Math.max(0, y - origin.top - MARGIN * fit);
+      // The letters never sit above the page, where a reload would scroll to
+      // their top. The room for spray around them may, cut off by the layer.
+      const at = Math.max(-MARGIN * fit, y - origin.top - MARGIN * fit);
       box.style.transform = `scale(${fit})`;
       box.style.left = `${x - MARGIN * fit - origin.left}px`;
       box.style.top = `${at}px`;

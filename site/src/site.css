@@ -328,8 +328,8 @@ p {
 /*
  * On a narrow window the graffiti sits above the opening, so the opening moves
  * down to make room: the letters' height, which the page sets as --graffiti,
- * with 30px each side, as ABOVE in graffiti.tsx. Keep the width the same as
- * NARROW there.
+ * with 4px above and 56px below, as ABOVE in graffiti.tsx. Keep the width
+ * the same as NARROW there.
  */
 @media (max-width: 879px) {
   .hero {
