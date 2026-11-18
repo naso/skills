@@ -21,7 +21,7 @@ export function HomePage() {
           stays in view while its line and skills scroll by. */}
       <section>
         <div className="skills" role="table" aria-label="Skills">
-          {KIND_LIST.map(({ id, name, text, skills }) => (
+          {KIND_LIST.map(({ id, name, text, skills }, index) => (
             <div key={id} className="kind" role="rowgroup">
               <div className="kind-name" role="row">
                 <span role="columnheader" aria-colspan={2}>
@@ -45,6 +45,22 @@ export function HomePage() {
                   <span role="cell">{summary}</span>
                 </div>
               ))}
+              {/* A skill still to come, after the last kind's skills. */}
+              {index === KIND_LIST.length - 1 && (
+                <div
+                  className="skill skill-soon"
+                  role="row"
+                  aria-label="Another skill, coming soon"
+                >
+                  <span role="cell">
+                    <span className="soon">Soon</span>
+                  </span>
+                  <span role="cell" aria-hidden>
+                    <span className="skeleton" />
+                    <span className="skeleton" style={{ width: '60%' }} />
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>
