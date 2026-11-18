@@ -56,7 +56,7 @@ export function Shell({ children }: { children: ReactNode }) {
 
       <footer>
         <span>
-          Hallucinated by <a href="https://fabio.cv">Fabio</a>.
+          MIT licence. Hallucinated by <a href="https://fabio.cv">Fabio</a>.
         </span>
         <nav>
           <a href={GITHUB}>GitHub</a>
