@@ -9,11 +9,13 @@ export function HomePage() {
   return (
     <Shell>
       <div className="hero">
-        <p className="lead">
-          Interface, interaction design and UX skills for coding agents. Each
-          one tells your agent how an interface should behave, in numbers, so
-          what it builds feels right the first time.
-        </p>
+        <div className="lead">
+          <h1>Interface, interaction design and UX skills for coding agents</h1>
+          <p>
+            Each one tells your agent how an interface should behave, in
+            numbers, so what it builds feels right the first time.
+          </p>
+        </div>
         <Install />
       </div>
 

@@ -297,6 +297,21 @@ p {
   text-wrap: pretty;
 }
 
+/* What the site is, larger, over the line about it. */
+.lead h1 {
+  margin: 0 0 8px;
+  color: var(--foreground);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.lead p {
+  margin: 0;
+}
+
 :not(pre) > code {
   padding: 0 4px;
   border-radius: var(--corner-small);
