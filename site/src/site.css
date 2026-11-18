@@ -401,19 +401,55 @@ section {
 }
 
 /*
- * The command to run by hand, as tall and round as the button, outlined like
- * the site's cards. A click selects all of it, to copy.
+ * The command to run by hand, as tall and round as the button and with its
+ * copy icon in the same place, outlined like the site's cards. A click on the
+ * command selects all of it.
  */
-.install .command {
+.command {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   height: 36px;
-  padding: 0 12px;
+  padding: 0 8px 0 12px;
   border-radius: var(--corner);
-  background: none;
   box-shadow: inset 0 0 0 1px var(--subtle);
-  color: var(--secondary);
+}
+
+.command code {
+  all: unset;
+  color: light-dark(oklch(49% 0.04 268), oklch(67.3% 0.028 276.2));
+  font: 14px/20px var(--mono);
+  white-space: nowrap;
   user-select: all;
+}
+
+.command button {
+  all: unset;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--corner-small);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.command button:hover {
+  color: var(--foreground);
+}
+
+.command button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+/* Code's colours, as on mcp-ui-tools.fabio.cv. */
+.code-keyword {
+  color: var(--keyword);
+}
+
+.code-string {
+  color: light-dark(oklch(46% 0.191 32.2), oklch(71.2% 0.191 32.2));
 }
 
 /* Copies the prompt that has an agent add the skills. */

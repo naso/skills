@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 
-import { AddToAgent } from './blocks';
+import { AddToAgent, Command } from './blocks';
 import { Graffiti, graffitiHeight } from './graffiti';
 import { SkillsLogo } from './logos';
 import { GITHUB, installPrompt } from './skills';
@@ -53,7 +53,7 @@ export function Install() {
   return (
     <div className="install">
       <AddToAgent prompt={installPrompt()} />
-      <code className="command">npx skills add naso/skills</code>
+      <Command code="npx skills add naso/skills" />
     </div>
   );
 }
