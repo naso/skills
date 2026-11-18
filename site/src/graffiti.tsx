@@ -126,9 +126,6 @@ const GAP = 8;
 /** How far right of the middle of the room beside the opening it sits. */
 const NUDGE = 24;
 
-/** How far above the middle of the opening it sits beside it. */
-const LIFT = 16;
-
 /**
  * Narrower than this, it sits above the opening instead, in the room the
  * stylesheet makes there: keep the two the same.
@@ -267,6 +264,10 @@ export function Graffiti({ text }: { text: string }) {
       const origin = wall.getBoundingClientRect();
       const column = content.getBoundingClientRect();
       const opening = lead!.getBoundingClientRect();
+      // Beside the opening, it sits level with its heading, if it has one.
+      const level = (
+        lead!.querySelector('h1') ?? lead!
+      ).getBoundingClientRect();
       const above = narrow.matches;
       // Across the column above the opening, or from the opening's right edge,
       // which its max width keeps the same on every page, to the column's.
@@ -282,7 +283,7 @@ export function Graffiti({ text }: { text: string }) {
       const x = from + (room - wide * fit) / 2 + (above ? 0 : NUDGE);
       const y = above
         ? opening.top - ABOVE - tall * fit
-        : (opening.top + opening.bottom - tall * fit) / 2 - LIFT;
+        : (level.top + level.bottom - tall * fit) / 2;
       // Never above the page, where a reload would scroll to its top.
       const at = Math.max(0, y - origin.top - MARGIN * fit);
       box.style.transform = `scale(${fit})`;
