@@ -18,23 +18,16 @@ export function HomePage() {
       </div>
 
       {/* The skills as a table, a group for each kind, whose row naming it
-          stays in view while its line and skills scroll by. */}
+          stays in view while its skills scroll by. */}
       <section>
         <div className="skills" role="table" aria-label="Skills">
-          {KIND_LIST.map(({ id, name, text, skills }, index) => (
+          {KIND_LIST.map(({ id, name, skills }, index) => (
             <div key={id} className="kind" role="rowgroup">
               <div className="kind-name" role="row">
                 <span role="columnheader" aria-colspan={2}>
                   {name}
                 </span>
               </div>
-              {text && (
-                <div className="kind-text" role="row">
-                  <span role="cell" aria-colspan={2}>
-                    {text}
-                  </span>
-                </div>
-              )}
               {skills.map(({ name, summary, path }) => (
                 <div key={name} className="skill skill-link" role="row">
                   <span role="cell">

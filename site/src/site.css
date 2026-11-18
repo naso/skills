@@ -338,8 +338,8 @@ section {
 /*
  * The skills, a row each, as the props table on mcp-ui-tools.fabio.cv: the
  * names' column as wide as the longest, lined up across every kind. Each
- * kind's name stays under the header, 64px tall, while its line and skills
- * scroll by, and leaves with its last one.
+ * kind's name stays under the header, 64px tall, while its skills scroll by,
+ * and leaves with its last one.
  */
 .skills {
   display: grid;
@@ -364,17 +364,10 @@ section {
   position: sticky;
   top: 64px;
   z-index: 19;
-  padding: 10px 0 4px;
+  padding: 10px 0;
   background: var(--surface);
   color: var(--foreground);
   font-weight: 500;
-}
-
-.kind-text {
-  grid-column: 1 / -1;
-  max-width: 640px;
-  padding-bottom: 10px;
-  color: var(--muted);
 }
 
 .skill > * {
