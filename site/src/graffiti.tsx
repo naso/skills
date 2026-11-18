@@ -126,6 +126,9 @@ const GAP = 8;
 /** How far right of the middle of the room beside the opening it sits. */
 const NUDGE = 24;
 
+/** How far above the middle of the opening it sits beside it. */
+const LIFT = 16;
+
 /**
  * Narrower than this, it sits above the opening instead, in the room the
  * stylesheet makes there: keep the two the same.
@@ -279,7 +282,7 @@ export function Graffiti({ text }: { text: string }) {
       const x = from + (room - wide * fit) / 2 + (above ? 0 : NUDGE);
       const y = above
         ? opening.top - ABOVE - tall * fit
-        : (opening.top + opening.bottom - tall * fit) / 2;
+        : (opening.top + opening.bottom - tall * fit) / 2 - LIFT;
       // Never above the page, where a reload would scroll to its top.
       const at = Math.max(0, y - origin.top - MARGIN * fit);
       box.style.transform = `scale(${fit})`;
