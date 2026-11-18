@@ -1,8 +1,7 @@
 # Skills
 
 Interface, interaction design and UX skills for coding agents, grouped by
-kind. Each is a folder in
-`skills/<kind>/`, with its `SKILL.md`.
+kind. Each is a folder in `skills/<kind>/`, with its `SKILL.md`.
 
 ## Interaction design
 
