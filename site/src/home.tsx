@@ -16,45 +16,35 @@ export function HomePage() {
         </p>
       </div>
 
-      <section id="install">
-        <div className="label">Install</div>
-        <h2>Add them all</h2>
-        <p>
-          Your agent downloads each skill into the folder it loads skills from.
-          To add only some, tell it which.
-        </p>
+      <section>
         <Install />
       </section>
 
-      {KIND_LIST.map(({ id, name, heading, text, skills }) => (
-        <section key={id} id={id}>
-          <div className="label">{name}</div>
-          {heading && <h2>{heading}</h2>}
-          {text && <p>{text}</p>}
-          <div className="table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Skill</th>
-                  <th>For</th>
-                </tr>
-              </thead>
-              <tbody>
-                {skills.map(({ name, summary, path }) => (
-                  <tr key={name}>
-                    <td>
-                      <a href={`${GITHUB}/tree/main/${path}`}>
-                        <code>{name}</code>
-                      </a>
-                    </td>
-                    <td>{summary}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ))}
+      {/* The skills as a table, a group for each kind, whose row naming it
+          stays in view while its skills scroll by. */}
+      <section>
+        <div className="skills" role="table" aria-label="Skills">
+          {KIND_LIST.map(({ id, name, skills }) => (
+            <div key={id} className="kind" role="rowgroup">
+              <div className="kind-name" role="row">
+                <span role="columnheader" aria-colspan={2}>
+                  {name}
+                </span>
+              </div>
+              {skills.map(({ name, summary, path }) => (
+                <div key={name} className="skill" role="row">
+                  <span role="cell">
+                    <a href={`${GITHUB}/tree/main/${path}`}>
+                      <code>{name}</code>
+                    </a>
+                  </span>
+                  <span role="cell">{summary}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
     </Shell>
   );
 }

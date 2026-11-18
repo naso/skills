@@ -39,28 +39,6 @@ function CopyIcon({
   );
 }
 
-/** A command, named in its tab, to copy. */
-export function Code({ name, code }: { name: string; code: string }) {
-  const [copied, copy] = useCopy(code);
-  return (
-    <div className="block">
-      <div className="tab">{name}</div>
-      <div className="copy">
-        <button
-          type="button"
-          aria-label={copied ? 'Copied' : `Copy ${name}`}
-          onClick={copy}
-        >
-          <CopyIcon copied={copied} />
-        </button>
-      </div>
-      <pre>
-        <code>{code}</code>
-      </pre>
-    </div>
-  );
-}
-
 /** Copies a prompt that has an agent add the skills itself. */
 export function AddToAgent({ prompt }: { prompt: string }) {
   const [copied, copy] = useCopy(prompt);

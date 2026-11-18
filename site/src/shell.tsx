@@ -1,33 +1,12 @@
-import { Collapsible } from '@base-ui/react/collapsible';
 import type { CSSProperties, ReactNode } from 'react';
 
-import { AddToAgent, Code } from './blocks';
+import { AddToAgent } from './blocks';
 import { Graffiti, graffitiHeight } from './graffiti';
 import { SkillsLogo } from './logos';
 import { GITHUB, installPrompt } from './skills';
 
 /** What the graffiti by the opening says, before its smiley. */
 const GRAFFITI = 'Tasteful';
-
-/** The arrow beside a section's toggle, which turns over when open. */
-function Chevron() {
-  return (
-    <svg
-      className="chevron"
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M3 4.5l3 3 3-3" />
-    </svg>
-  );
-}
 
 /** The page: its header, its content and the footer. */
 export function Shell({ children }: { children: ReactNode }) {
@@ -66,30 +45,7 @@ export function Shell({ children }: { children: ReactNode }) {
   );
 }
 
-/**
- * How to add the skills: a button that copies a prompt for a coding agent.
- * Manually opens the command that installs them from the repository.
- */
+/** How to add the skills: a button that copies a prompt for a coding agent. */
 export function Install() {
-  return (
-    <div className="clients">
-      <Collapsible.Root>
-        <div className="installs">
-          <AddToAgent prompt={installPrompt()} />
-          <Collapsible.Trigger className="manual">
-            Manually
-            <Chevron />
-          </Collapsible.Trigger>
-        </div>
-        {/* Find in page opens it to show a match. */}
-        <Collapsible.Panel className="clients manual-panel" hiddenUntilFound>
-          <Code name="Terminal" code="npx skills add naso/skills" />
-          <p>
-            It asks which skills to add, and to which agents. They go in the
-            current project; add <code>-g</code> for every project.
-          </p>
-        </Collapsible.Panel>
-      </Collapsible.Root>
-    </div>
-  );
+  return <AddToAgent prompt={installPrompt()} />;
 }

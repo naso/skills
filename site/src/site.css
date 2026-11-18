@@ -259,14 +259,6 @@ a {
   outline-offset: -2px;
 }
 
-.chevron {
-  color: var(--muted);
-}
-
-.manual[data-panel-open] .chevron {
-  rotate: 180deg;
-}
-
 @media (hover: hover) {
   .switcher:hover::before {
     opacity: 1;
@@ -282,25 +274,6 @@ a {
 
 /* Text */
 
-h2,
-h3 {
-  margin: 0;
-  color: var(--foreground);
-  font-weight: 500;
-}
-
-h2 {
-  margin-bottom: 12px;
-  font-size: 20px;
-  line-height: 28px;
-  letter-spacing: -0.01em;
-}
-
-h3 {
-  font-size: 16px;
-  line-height: 24px;
-}
-
 p {
   max-width: 640px;
   margin: 0 0 16px;
@@ -311,14 +284,6 @@ p {
   max-width: 440px;
   margin-bottom: 32px;
   text-wrap: pretty;
-}
-
-/* A part's name, in a tab's type. */
-.label {
-  margin-bottom: 8px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 16px;
 }
 
 :not(pre) > code {
@@ -360,172 +325,51 @@ section {
 }
 
 /*
- * Code and prompts on the sunken ground, with a tab cut into one corner and
- * copy in the other, as in the component.
+ * The skills, a row each, as the props table on mcp-ui-tools.fabio.cv: the
+ * names' column as wide as the longest, lined up across every kind. Each
+ * kind's row stays under the header, 64px tall, while its skills scroll by,
+ * and leaves with its last one.
  */
-.block {
-  --ground: var(--surface);
-  position: relative;
-  min-width: 0;
-  padding-top: 22px;
-  border-radius: var(--corner);
-  background: var(--sunken);
-}
-
-.block pre {
-  margin: 0;
-  padding: 16px;
-  overflow-x: auto;
-  color: light-dark(oklch(49% 0.04 268), oklch(67.3% 0.028 276.2));
-  font: 14px/24px var(--mono);
-  scrollbar-width: thin;
-}
-
-.block .prompt {
-  margin: 0;
-  padding: 12px 16px 16px;
-  color: var(--foreground);
-  font-size: 15px;
-  line-height: 24px;
-}
-
-.tab,
-.copy {
-  position: absolute;
-  top: 0;
-  display: flex;
-  align-items: center;
-  height: 24px;
-  background: var(--ground);
-}
-
-.tab {
-  left: 0;
-  padding: 0 8px;
-  border-bottom-right-radius: var(--corner-inner);
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 16px;
-}
-
-.copy {
-  right: 0;
-  padding: 0 4px;
-  border-bottom-left-radius: var(--corner-inner);
-}
-
-.tab::before,
-.tab::after,
-.copy::before,
-.copy::after {
-  content: '';
-  position: absolute;
-  width: var(--corner-inner);
-  height: var(--corner-inner);
-  background: radial-gradient(
-    circle at var(--at) 100%,
-    transparent var(--corner-inner),
-    var(--ground) calc(var(--corner-inner) + 0.5px)
-  );
-}
-
-.tab {
-  --at: 100%;
-}
-
-.copy {
-  --at: 0;
-}
-
-.tab::before {
-  top: 0;
-  left: 100%;
-}
-
-.tab::after {
-  top: 100%;
-  left: 0;
-}
-
-.copy::before {
-  top: 0;
-  right: 100%;
-}
-
-.copy::after {
-  top: 100%;
-  right: 0;
-}
-
-.copy button {
-  all: unset;
+.skills {
   display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: var(--corner-small);
-  color: var(--muted);
-  cursor: pointer;
-}
-
-.copy button:hover {
-  color: var(--foreground);
-}
-
-.copy button:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
-}
-
-/* The skills, a row each, as the props table on mcp-ui-tools.fabio.cv. */
-.table {
-  margin-top: 24px;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
+  grid-template-columns: max-content minmax(0, 1fr);
   font-size: 14px;
   line-height: 20px;
 }
 
-th,
-td {
+.kind,
+.skill {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+}
+
+.kind-name {
+  grid-column: 1 / -1;
+  position: sticky;
+  top: 64px;
+  z-index: 19;
+  padding: 10px 0;
+  border-top: 1px solid var(--subtle);
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.skill > * {
   padding: 10px 16px 10px 0;
   border-top: 1px solid var(--subtle);
-  text-align: left;
-  vertical-align: top;
 }
 
-th {
-  color: var(--muted);
-  font-weight: 400;
-}
-
-td:first-child {
+.skill > :first-child {
   white-space: nowrap;
 }
 
-td a {
+.skills a {
   text-decoration: none;
 }
 
-td a:hover code {
+.skills a:hover code {
   color: var(--foreground);
-}
-
-/* Installing, with the command under Manually. */
-.clients {
-  display: grid;
-  gap: 16px;
-}
-
-/* The button that copies the prompt, and Manually beside it. */
-.installs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
 }
 
 /* Copies the prompt that has an agent add the skills. */
@@ -557,43 +401,6 @@ td a:hover code {
 
 .agent-copy {
   color: var(--muted);
-}
-
-/* Opens the command, at the end of the buttons. */
-.manual {
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 36px;
-  border-radius: var(--corner-small);
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 20px;
-  cursor: pointer;
-}
-
-.manual:hover,
-.manual[data-panel-open] {
-  color: var(--foreground);
-}
-
-/* The commands under Manually, below the buttons. */
-.manual-panel[data-open] {
-  margin-top: 16px;
-}
-
-/*
- * The prerendered page has it `hidden` until the script makes it
- * `until-found`, and `.clients` would show it in between.
- */
-.manual-panel[hidden=''] {
-  display: none;
-}
-
-.manual:focus-visible {
-  outline: 2px solid var(--muted);
-  outline-offset: 2px;
 }
 
 footer {

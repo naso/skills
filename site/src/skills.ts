@@ -3,13 +3,9 @@ import read from 'virtual:skills';
 export const SITE = 'https://skills.fabio.cv';
 export const GITHUB = 'https://github.com/naso/skills';
 
-/** What the site says about each kind of skill, by its folder's name. */
-const KINDS: Record<string, { name: string; heading: string; text: string }> = {
-  'interaction-design': {
-    name: 'Interaction design',
-    heading: 'Behaviour under the hand',
-    text: 'Tracking, resistance, springs and the moments in between. Each skill specifies how an interface behaves, in numbers, and leaves the technology to your project.',
-  },
+/** Each kind of skill's name, by its folder's name. */
+const KINDS: Record<string, string> = {
+  'interaction-design': 'Interaction design',
 };
 
 export type Skill = (typeof read)[number];
@@ -18,8 +14,6 @@ export type Kind = {
   /** Its folder's name. */
   id: string;
   name: string;
-  heading?: string;
-  text?: string;
   skills: Skill[];
 };
 
@@ -34,10 +28,8 @@ export const KIND_LIST: Kind[] = (() => {
     .map((id) => ({
       id,
       name:
-        KINDS[id]?.name ??
+        KINDS[id] ??
         id.replace(/-/g, ' ').replace(/^./, (first) => first.toUpperCase()),
-      heading: KINDS[id]?.heading,
-      text: KINDS[id]?.text,
       skills: read.filter(({ kind }) => kind === id),
     }));
 })();

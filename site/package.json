@@ -8,9 +8,6 @@
     "check-types": "tsc --noEmit",
     "deploy": "pnpm build && wrangler deploy"
   },
-  "dependencies": {
-    "@base-ui/react": "1.9.0"
-  },
   "devDependencies": {
     "@types/node": "26.1.1",
     "@types/react": "19.2.17",
