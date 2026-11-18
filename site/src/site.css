@@ -88,7 +88,8 @@ main {
  * A box that shows on hover: it fades in and springs up to its size. The
  * element holding it is `position: relative` and `isolation: isolate`.
  */
-.switcher::before {
+.switcher::before,
+.skill-link::before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -276,7 +277,8 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .switcher::before {
+  .switcher::before,
+  .skill-link::before {
     transition: none;
   }
 }
@@ -409,11 +411,49 @@ section {
   background: var(--subtle);
 }
 
-.skills a {
+/*
+ * A skill's whole row is its link: the name's link reaches over the row, and
+ * the row shows the hover box, 8px past its text each side as the logo's
+ * does, under the line above it. Focused, the box shows with a ring.
+ */
+.skill-link {
+  position: relative;
+  isolation: isolate;
+}
+
+.skill-link::before {
+  inset: 1px -8px 0;
+  border-radius: var(--corner);
+}
+
+.skill-link a {
+  outline: none;
   text-decoration: none;
 }
 
-.skills a:hover code {
+.skill-link a::after {
+  content: '';
+  position: absolute;
+  inset: 0 -8px;
+}
+
+@media (hover: hover) {
+  .skill-link:hover::before {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.skill-link:has(a:focus-visible)::before {
+  opacity: 1;
+  scale: 1;
+  outline: 2px solid var(--muted);
+  outline-offset: -2px;
+}
+
+/* The name's pill stands out of the box in the page's colour. */
+.skill-link:is(:hover, :has(a:focus-visible)) code {
+  background: var(--surface);
   color: var(--foreground);
 }
 

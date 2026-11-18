@@ -36,7 +36,7 @@ export function HomePage() {
                 </div>
               )}
               {skills.map(({ name, summary, path }) => (
-                <div key={name} className="skill" role="row">
+                <div key={name} className="skill skill-link" role="row">
                   <span role="cell">
                     <a href={`${GITHUB}/tree/main/${path}`}>
                       <code>{name}</code>
