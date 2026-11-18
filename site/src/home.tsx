@@ -50,10 +50,10 @@ export function HomePage() {
                 <div
                   className="skill skill-soon"
                   role="row"
-                  aria-label="Another skill, coming soon"
+                  aria-label="More skills, coming soon"
                 >
                   <span role="cell">
-                    <span className="soon">Soon</span>
+                    <code className="soon">more soon</code>
                   </span>
                   <span role="cell" aria-hidden>
                     <span className="skeleton" />

@@ -385,42 +385,15 @@ section {
 }
 
 /*
- * A skill still to come: a Soon stamp where its name will be, tilted as if
- * pressed on by hand, and bars where its summary will be, each in a line of
- * the text it stands for. As on mcp-ui-tools.fabio.cv's tool still to come.
+ * More skills to come: a name's pill saying so, dashed and without its fill,
+ * like the tool still to come on mcp-ui-tools.fabio.cv, and bars where its
+ * summary will be, each in a line of the text it stands for.
  */
-.soon {
-  display: inline-block;
-  rotate: -12deg;
-  /* The tilt swings its corner 1.6px left, out of line with the names. */
-  margin-left: 2px;
-  padding: 2px 6px;
-  border-radius: var(--corner-small);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--disabled);
+.skills .soon {
+  outline: 1px dashed var(--disabled);
+  outline-offset: -1px;
+  background: none;
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  transition:
-    background 0.15s ease-out,
-    box-shadow 0.15s ease-out,
-    color 0.15s ease-out;
-}
-
-/*
- * Hovering the row fills the stamp in its border's grey, 1px in from the
- * border, and turns its text the page's colour.
- */
-@media (hover: hover) {
-  .skill-soon:hover .soon {
-    background: var(--disabled);
-    box-shadow:
-      inset 0 0 0 1px var(--disabled),
-      inset 0 0 0 2px var(--surface);
-    color: var(--surface);
-  }
 }
 
 .skill-soon > :last-child {
