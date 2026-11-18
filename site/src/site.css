@@ -65,9 +65,17 @@ a {
 }
 
 .page {
+  /* At least as tall as the window, so the footer sits at its bottom. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
   max-width: 832px;
   margin: 0 auto;
   padding: 0 16px 64px;
+}
+
+main {
+  flex-grow: 1;
 }
 
 @media (min-width: 640px) {
@@ -245,7 +253,8 @@ a {
   position: relative;
   isolation: isolate;
   margin: 0 -8px;
-  padding: 6px 8px;
+  /* More room after the name than before the logo, which looks the same. */
+  padding: 6px 12px 6px 8px;
   border-radius: var(--corner);
   color: var(--foreground);
   font: 500 16px/24px var(--sans);
@@ -327,8 +336,8 @@ section {
 /*
  * The skills, a row each, as the props table on mcp-ui-tools.fabio.cv: the
  * names' column as wide as the longest, lined up across every kind. Each
- * kind's row stays under the header, 64px tall, while its skills scroll by,
- * and leaves with its last one.
+ * kind's name stays under the header, 64px tall, while its line and skills
+ * scroll by, and leaves with its last one.
  */
 .skills {
   display: grid;
@@ -344,14 +353,25 @@ section {
   grid-template-columns: subgrid;
 }
 
+.kind + .kind {
+  margin-top: 48px;
+}
+
 .kind-name {
   grid-column: 1 / -1;
   position: sticky;
   top: 64px;
   z-index: 19;
-  padding: 10px 0;
-  border-top: 1px solid var(--subtle);
+  padding: 10px 0 4px;
   background: var(--surface);
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.kind-text {
+  grid-column: 1 / -1;
+  max-width: 640px;
+  padding-bottom: 10px;
   color: var(--muted);
 }
 
@@ -370,6 +390,30 @@ section {
 
 .skills a:hover code {
   color: var(--foreground);
+}
+
+/* The button that copies the prompt, under the opening, and the command. */
+.install {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/*
+ * The command to run by hand, as tall and round as the button, outlined like
+ * the site's cards. A click selects all of it, to copy.
+ */
+.install .command {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--corner);
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--subtle);
+  color: var(--secondary);
+  user-select: all;
 }
 
 /* Copies the prompt that has an agent add the skills. */

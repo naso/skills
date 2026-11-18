@@ -45,7 +45,15 @@ export function Shell({ children }: { children: ReactNode }) {
   );
 }
 
-/** How to add the skills: a button that copies a prompt for a coding agent. */
+/**
+ * How to add the skills: a button that copies a prompt for a coding agent,
+ * and beside it the command that adds them by hand.
+ */
 export function Install() {
-  return <AddToAgent prompt={installPrompt()} />;
+  return (
+    <div className="install">
+      <AddToAgent prompt={installPrompt()} />
+      <code className="command">npx skills add naso/skills</code>
+    </div>
+  );
 }
