@@ -1,6 +1,6 @@
 # Reference implementation
 
-The spec in [`SKILL.md`](SKILL.md) as one framework-free function and its CSS. Fit the class names, the padding and the gap to the layout; `gutter` is the padding and gap across, which the track leaves out.
+One way to build the behaviour in [`SKILL.md`](SKILL.md): on the web, as one framework-free function and its CSS. It is a starting point, not a requirement; a project with its own spring, motion library or platform builds the same behaviour with those. Fit the class names, the padding and the gap to the layout; `gutter` is the padding and gap across, which the track leaves out.
 
 ## Markup
 
