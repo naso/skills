@@ -388,6 +388,7 @@ section {
 .skill > * {
   padding: 10px 16px 10px 0;
   border-top: 1px solid var(--subtle);
+  transition: border-color 0.15s ease-out;
 }
 
 .skill > :first-child {
@@ -422,7 +423,7 @@ section {
 /*
  * A skill's whole row is its link: the name's link reaches over the row, and
  * the row shows the hover box, 8px past its text each side as the logo's
- * does, under the line above it. Focused, the box shows with a ring.
+ * does. Focused, the box shows with a ring.
  */
 .skill-link {
   position: relative;
@@ -430,7 +431,7 @@ section {
 }
 
 .skill-link::before {
-  inset: 1px -8px 0;
+  inset: 0 -8px;
   border-radius: var(--corner);
 }
 
@@ -460,8 +461,9 @@ section {
 }
 
 /*
- * The name's pill stands out of the box in the page's colour, fading as the
- * box fades in and out, so the two move as one.
+ * The name's pill stands out of the box in the page's colour, and the lines
+ * above and below the row go, so their ends don't show past its round
+ * corners. Both fade as the box fades in and out, so they move as one.
  */
 .skill-link code {
   transition:
@@ -474,9 +476,15 @@ section {
   color: var(--foreground);
 }
 
-/* With the box, it changes at once when motion is reduced. */
+.skill-link:is(:hover, :has(a:focus-visible)) > *,
+.skill-link:is(:hover, :has(a:focus-visible)) + .skill > * {
+  border-top-color: transparent;
+}
+
+/* With the box, they change at once when motion is reduced. */
 @media (prefers-reduced-motion: reduce) {
-  .skill-link code {
+  .skill-link code,
+  .skill > * {
     transition: none;
   }
 }
