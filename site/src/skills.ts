@@ -7,7 +7,7 @@ export const GITHUB = 'https://github.com/naso/skills';
 const KINDS: Record<string, { name: string; text: string }> = {
   'interaction-design': {
     name: 'Interaction design',
-    text: 'Tracking, resistance, springs and the moments in between. Each skill specifies how an interface behaves, in numbers, and leaves the technology to your project.',
+    text: 'Each skill specifies how an interface behaves, in numbers, and leaves the technology to your project.',
   },
 };
 
