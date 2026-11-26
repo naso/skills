@@ -351,8 +351,8 @@ section {
 }
 
 /*
- * The skills, a row each, as the props table on mcp-ui-tools.fabio.cv: the
- * names' column as wide as the longest, lined up across every kind. Each
+ * The skills, a row each, as the props table on ui.fabio.cv/component-code/:
+ * the names' column as wide as the longest, lined up across every kind. Each
  * kind's name stays under the header, 64px tall, while its skills scroll by,
  * and leaves with its last one.
  */
@@ -397,7 +397,7 @@ section {
 
 /*
  * More skills to come: a name's pill saying so, dashed and without its fill,
- * like the tool still to come on mcp-ui-tools.fabio.cv, and bars where its
+ * like the tool still to come on ui.fabio.cv/mcp/, and bars where its
  * summary will be, each in a line of the text it stands for.
  */
 .skills .soon {
@@ -540,7 +540,7 @@ section {
   outline-offset: -2px;
 }
 
-/* Code's colours, as on mcp-ui-tools.fabio.cv. */
+/* Code's colours, as on ui.fabio.cv. */
 .code-keyword {
   color: var(--keyword);
 }

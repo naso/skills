@@ -2,7 +2,7 @@ import { useId } from 'react';
 import type { ReactNode } from 'react';
 
 /*
- * The logos are stencils, as on mcp-ui-tools.fabio.cv: a grey rounded square
+ * The logos are stencils, as on ui.fabio.cv/mcp/: a grey rounded square
  * of paint, sprayed through a sheet. What the paint leaves bare is the sheet's
  * islands, the shapes that sat on the ground before, and the bridges that
  * hold them to the rest of the sheet, 1.2 units wide. Where it is bare,

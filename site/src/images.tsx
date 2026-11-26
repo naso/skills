@@ -8,7 +8,7 @@ import type { Point } from './spray';
 
 /*
  * The share image `scripts/images.js` draws into `public`, in a browser, as
- * mcp-ui-tools.fabio.cv draws its own.
+ * the MCP pages' old site did, now archived in naso/mcp-ui-tools.
  */
 
 export const OG = { width: 1200, height: 630 };
