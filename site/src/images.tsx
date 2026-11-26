@@ -7,8 +7,7 @@ import { random, spray } from './spray';
 import type { Point } from './spray';
 
 /*
- * The share image `scripts/images.js` draws into `public`, in a browser, as
- * the MCP pages' old site did, now archived in naso/mcp-ui-tools.
+ * The share image `scripts/images.js` draws into `public`, in a browser.
  */
 
 export const OG = { width: 1200, height: 630 };

@@ -1,6 +1,5 @@
 // Draws the share image, `public/og.png`, in headless Chrome from a build of
-// `src/draw.tsx`, as the MCP pages' old site did, now archived in
-// naso/mcp-ui-tools. Run it after changing the site's name, summary or logo:
+// `src/draw.tsx`. Run it after changing the site's name, summary or logo:
 // `pnpm images`. Set CHROME to Chrome's binary if it is not in the usual
 // place.
 import { execFile } from 'node:child_process';
