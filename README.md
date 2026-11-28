@@ -1,5 +1,7 @@
 # Skills
 
+[![npm](https://img.shields.io/npm/v/@fabiocv/skills)](https://www.npmjs.com/package/@fabiocv/skills)
+
 Interface, interaction design and UX skills for coding agents, grouped by
 kind. Each is a folder in `skills/<kind>/`, with its `SKILL.md`.
 
