@@ -1,3 +1,4 @@
+import { Button } from '@fabiocv/ui/button';
 import type { CSSProperties, ReactNode } from 'react';
 
 import { AddToAgent, Command } from './blocks';
@@ -29,17 +30,21 @@ export function Shell({ children }: { children: ReactNode }) {
           <SkillsLogo />
           Skills
         </a>
+        {/* The repository, at the header's right. */}
+        <Button className="repo" href={GITHUB}>
+          GitHub
+        </Button>
       </header>
 
       <main>{children}</main>
 
+      {/* As skedrick.fabio.cv's: the license at the left, the credit at the
+          right. */}
       <footer>
+        <span>MIT license.</span>
         <span>
-          MIT licence. Hallucinated by <a href="https://fabio.cv">Fabio</a>.
+          Hallucinated by <a href="https://fabio.cv">Fabio</a>.
         </span>
-        <nav>
-          <a href={GITHUB}>GitHub</a>
-        </nav>
       </footer>
     </div>
   );

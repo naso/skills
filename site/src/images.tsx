@@ -41,7 +41,7 @@ async function stencil(
 ) {
   const W = (LOGO + DUST * 2) * scale;
   canvas.width = canvas.height = W;
-  const color = rgb(canvas, 'var(--disabled)');
+  const color = rgb(canvas, 'var(--color-foreground-disabled)');
 
   // Where the paint goes: the logo on its own, as an image.
   const image = new Image();
@@ -197,8 +197,8 @@ html, body { margin: 0; overflow: hidden; scrollbar-gutter: auto; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--surface);
-  font-family: var(--sans);
+  background: var(--color-surface);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 .og-logo { position: relative; width: ${LOGO}px; height: ${LOGO}px; }
@@ -213,7 +213,7 @@ html, body { margin: 0; overflow: hidden; scrollbar-gutter: auto; }
   margin: 0;
   max-width: 880px;
   text-wrap: balance;
-  color: var(--secondary);
+  color: var(--color-foreground-secondary);
   font-size: 34px;
   line-height: 46px;
 }

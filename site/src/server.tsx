@@ -1,4 +1,5 @@
 import { StrictMode } from 'react';
+import { ThemeProvider } from '@fabiocv/ui/theme';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 
 import { HomePage, SUMMARY } from './home';
@@ -11,7 +12,7 @@ export { SITE };
 const escape = (text: string) =>
   text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-/** The paint's grey, light and dark, as the site's `--disabled`. */
+/** The paint's grey, light and dark, as @fabiocv/ui's Foreground disabled. */
 const GROUND = { light: '#a2a4ab', dark: '#5c5d63' };
 
 /** The page as HTML, with its meta. */
@@ -32,7 +33,9 @@ export function render() {
     ].join('\n    '),
     html: renderToString(
       <StrictMode>
-        <HomePage />
+        <ThemeProvider>
+          <HomePage />
+        </ThemeProvider>
       </StrictMode>,
     ),
   };

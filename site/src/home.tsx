@@ -1,3 +1,5 @@
+import { Highlight, highlightFrame, useHighlight } from '@fabiocv/ui/highlight';
+
 import { Install, Shell } from './shell';
 import { GITHUB, KIND_LIST } from './skills';
 
@@ -6,6 +8,7 @@ export const SUMMARY =
   'Interface, interaction design and UX skills for coding agents.';
 
 export function HomePage() {
+  const { frame, enter, leave, style } = useHighlight();
   return (
     <Shell>
       <div className="hero">
@@ -22,7 +25,13 @@ export function HomePage() {
       {/* The skills as a table, a group for each kind, whose row naming it
           stays in view while its skills scroll by. */}
       <section>
-        <div className="skills" role="table" aria-label="Skills">
+        <div
+          ref={frame}
+          className={`skills ${highlightFrame}`}
+          role="table"
+          aria-label="Skills"
+        >
+          <Highlight style={style} className="skill-highlight" />
           {KIND_LIST.map(({ id, name, skills }, index) => (
             <div key={id} className="kind" role="rowgroup">
               <div className="kind-name" role="row">
@@ -31,7 +40,13 @@ export function HomePage() {
                 </span>
               </div>
               {skills.map(({ name, summary, path }) => (
-                <div key={name} className="skill skill-link" role="row">
+                <div
+                  key={name}
+                  className="skill skill-link"
+                  role="row"
+                  onPointerEnter={enter}
+                  onPointerLeave={leave}
+                >
                   <span role="cell">
                     <a href={`${GITHUB}/tree/main/${path}`}>
                       <code>{name}</code>

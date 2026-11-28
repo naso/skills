@@ -1,67 +1,29 @@
-@font-face {
-  font-family: Geist;
-  src: url('/fonts/Geist-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-/* The component's own colours, light and dark by the system's setting. */
+/*
+ * The colours, type and theme are @fabiocv/ui's, from its stylesheet, which
+ * main.tsx imports first. Only the graffiti's paint is the site's own.
+ */
 :root {
-  color-scheme: light dark;
-  --surface: light-dark(oklch(100% 0 0), oklch(17.5% 0 0));
-  --subtle: light-dark(oklch(93% 0 0), oklch(24.5% 0 0));
-  --sunken: light-dark(oklch(89.5% 0 0), oklch(21% 0 0));
-  --foreground: light-dark(oklch(22.7% 0.006 271.2), oklch(92.3% 0.004 286.3));
-  --secondary: light-dark(oklch(41.8% 0.014 274.6), oklch(78.2% 0.016 281.9));
-  --muted: light-dark(oklch(52% 0.044 267.6), oklch(67.3% 0.028 276.2));
-  --disabled: light-dark(oklch(72% 0.01 270), oklch(48% 0.01 280));
   --success: light-dark(oklch(46% 0.185 145.3), oklch(84.4% 0.185 145.3));
-  --warning: light-dark(oklch(46% 0.191 32.2), oklch(71.2% 0.191 32.2));
   --spray: light-dark(oklch(45.2% 0.313 264.1), oklch(60% 0.25 264.1));
-  --attribute: light-dark(oklch(46% 0.088 229.9), oklch(85.7% 0.088 229.9));
-  --keyword: light-dark(oklch(46% 0.2 317.2), oklch(76.9% 0.2 317.2));
-  /*
-   * Corners: 8px for surfaces, buttons and hover boxes, 10px for what holds
-   * them 2px in, 6px for what sits 2px inside them, 4px for small things.
-   */
-  --corner: 8px;
-  --corner-outer: calc(var(--corner) + 2px);
-  --corner-inner: calc(var(--corner) - 2px);
-  --corner-small: 4px;
-  --sans: Geist, ui-sans-serif, system-ui, sans-serif;
-  --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  /* No larger text in landscape. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* A thin scrollbar with no track of its own. */
   scrollbar-width: thin;
-  scrollbar-color: var(--disabled) transparent;
-  /* Keeps the scrollbar's room, so opening a release doesn't shift the page. */
+  scrollbar-color: var(--color-foreground-disabled) transparent;
+  /* Keeps the scrollbar's room, so a longer page isn't shifted by it. */
   scrollbar-gutter: stable;
-}
-
-body {
-  margin: 0;
-  background: var(--surface);
-  color: var(--secondary);
-  font: 16px/24px var(--sans);
-  -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: inherit;
+  /* No wait for a second tap. */
+  touch-action: manipulation;
 }
 
 .page {
@@ -71,7 +33,11 @@ a {
   min-height: 100dvh;
   max-width: 832px;
   margin: 0 auto;
-  padding: 0 16px 64px;
+  /* The gutters, or the room a notch needs in landscape. */
+  --gutter: 16px;
+  padding: 0 max(var(--gutter), env(safe-area-inset-right, 0px))
+    calc(64px + env(safe-area-inset-bottom, 0px))
+    max(var(--gutter), env(safe-area-inset-left, 0px));
 }
 
 main {
@@ -80,54 +46,8 @@ main {
 
 @media (min-width: 640px) {
   .page {
-    padding: 0 32px 64px;
+    --gutter: 32px;
   }
-}
-
-/*
- * A box that shows on hover: it fades in and springs up to its size. The
- * element holding it is `position: relative` and `isolation: isolate`.
- */
-.switcher::before,
-.skill-link::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--subtle);
-  opacity: 0;
-  scale: 0.96;
-  transition:
-    opacity 0.15s ease-out,
-    scale 0.45s
-      linear(
-        0,
-        0.055,
-        0.1785,
-        0.3265,
-        0.4727,
-        0.6034,
-        0.7128,
-        0.7999,
-        0.8665,
-        0.9153,
-        0.9499,
-        0.9734,
-        0.9886,
-        0.9979,
-        1.003,
-        1.0055,
-        1.0063,
-        1.0061,
-        1.0053,
-        1.0044,
-        1.0035,
-        1.0026,
-        1.0019,
-        1.0014,
-        1
-      );
 }
 
 /* Header */
@@ -161,11 +81,9 @@ main {
   pointer-events: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .edge {
-    --ground: 0.6;
-    --wide: 0.33;
-  }
+.dark .edge {
+  --ground: 0.6;
+  --wide: 0.33;
 }
 
 .edge > div {
@@ -174,7 +92,7 @@ main {
 }
 
 .edge-ground {
-  background: var(--surface);
+  background: var(--color-surface);
   opacity: var(--ground);
   mask-image: var(--fade);
 }
@@ -251,36 +169,25 @@ main {
   display: flex;
   align-items: center;
   gap: 8px;
-  position: relative;
-  isolation: isolate;
   margin: 0 -8px;
   /* More room after the name than before the logo, which looks the same. */
   padding: 6px 12px 6px 8px;
-  border-radius: var(--corner);
-  color: var(--foreground);
-  font: 500 16px/24px var(--sans);
+  border-radius: var(--radius-8);
+  color: var(--color-foreground);
+  font: var(--font-weight-medium) 16px/24px var(--font-sans);
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
 .switcher:focus-visible {
-  outline: 2px solid var(--muted);
+  outline: 2px solid var(--color-foreground-muted);
   outline-offset: -2px;
 }
 
-@media (hover: hover) {
-  .switcher:hover::before {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .switcher::before,
-  .skill-link::before {
-    transition: none;
-  }
+/* The repository, its label lined up with the page's right edge. */
+.repo {
+  margin-right: -8px;
 }
 
 /* Text */
@@ -300,9 +207,9 @@ p {
 /* What the site is, larger, over the line about it. */
 .lead h1 {
   margin: 0 0 8px;
-  color: var(--foreground);
+  color: var(--color-foreground);
   font-size: 24px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 32px;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -314,9 +221,9 @@ p {
 
 :not(pre) > code {
   padding: 0 4px;
-  border-radius: var(--corner-small);
-  background: var(--subtle);
-  font: 14px/20px var(--mono);
+  border-radius: var(--radius-4);
+  background: var(--color-surface-subtle);
+  font: 14px/20px var(--font-mono);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -380,14 +287,14 @@ section {
   top: 64px;
   z-index: 19;
   padding: 10px 0;
-  background: var(--surface);
-  color: var(--foreground);
-  font-weight: 500;
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  font-weight: var(--font-weight-medium);
 }
 
 .skill > * {
   padding: 10px 16px 10px 0;
-  border-top: 1px solid var(--subtle);
+  border-top: 1px solid var(--color-surface-subtle);
   transition: border-color 0.15s ease-out;
 }
 
@@ -401,10 +308,10 @@ section {
  * summary will be, each in a line of the text it stands for.
  */
 .skills .soon {
-  outline: 1px dashed var(--disabled);
+  outline: 1px dashed var(--color-foreground-disabled);
   outline-offset: -1px;
   background: none;
-  color: var(--muted);
+  color: var(--color-foreground-muted);
 }
 
 .skill-soon > :last-child {
@@ -416,23 +323,23 @@ section {
   width: 100%;
   height: 8px;
   margin: 6px 0;
-  border-radius: var(--corner-small);
-  background: var(--subtle);
+  border-radius: var(--radius-4);
+  background: var(--color-surface-subtle);
 }
 
 /*
  * A skill's whole row is its link: the name's link reaches over the row, and
- * the row shows the hover box, 8px past its text each side as the logo's
- * does. Focused, the box shows with a ring.
+ * @fabiocv/ui's Highlight slides from row to row behind them, 8px past the
+ * text each side as the logo's does. Focused, the box shows with a ring.
  */
 .skill-link {
   position: relative;
-  isolation: isolate;
 }
 
-.skill-link::before {
-  inset: 0 -8px;
-  border-radius: var(--corner);
+.skills > .skill-highlight {
+  box-sizing: content-box;
+  margin-left: -8px;
+  padding-inline: 8px;
 }
 
 .skill-link a {
@@ -446,17 +353,14 @@ section {
   inset: 0 -8px;
 }
 
-@media (hover: hover) {
-  .skill-link:hover::before {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
 .skill-link:has(a:focus-visible)::before {
-  opacity: 1;
-  scale: 1;
-  outline: 2px solid var(--muted);
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0 -8px;
+  border-radius: var(--radius-8);
+  background: var(--color-surface-subtle);
+  outline: 2px solid var(--color-foreground-muted);
   outline-offset: -2px;
 }
 
@@ -472,8 +376,8 @@ section {
 }
 
 .skill-link:is(:hover, :has(a:focus-visible)) code {
-  background: var(--surface);
-  color: var(--foreground);
+  background: var(--color-surface);
+  color: var(--color-foreground);
 }
 
 .skill-link:is(:hover, :has(a:focus-visible)) > *,
@@ -481,7 +385,7 @@ section {
   border-top-color: transparent;
 }
 
-/* With the box, they change at once when motion is reduced. */
+/* They change at once when motion is reduced. */
 @media (prefers-reduced-motion: reduce) {
   .skill-link code,
   .skill > * {
@@ -498,9 +402,9 @@ section {
 }
 
 /*
- * The command to run by hand, as tall and round as the button and with its
- * copy icon in the same place, outlined like the site's cards. A click on the
- * command selects all of it.
+ * The command to run by hand, as tall and round as the button's box and
+ * outlined like the site's cards, with its copy icon at the end. A click on
+ * the command selects all of it.
  */
 .command {
   display: inline-flex;
@@ -508,14 +412,14 @@ section {
   gap: 8px;
   height: 36px;
   padding: 0 8px 0 12px;
-  border-radius: var(--corner);
-  box-shadow: inset 0 0 0 1px var(--subtle);
+  border-radius: var(--radius-8);
+  box-shadow: inset 0 0 0 1px var(--color-surface-subtle);
 }
 
 .command code {
   all: unset;
-  color: light-dark(oklch(49% 0.04 268), oklch(67.3% 0.028 276.2));
-  font: 14px/20px var(--mono);
+  color: var(--code-text);
+  font: 14px/20px var(--font-mono);
   white-space: nowrap;
   user-select: all;
 }
@@ -526,13 +430,15 @@ section {
   place-items: center;
   width: 20px;
   height: 20px;
-  border-radius: var(--corner-small);
-  color: var(--muted);
+  border-radius: var(--radius-4);
+  color: var(--color-foreground-muted);
   cursor: pointer;
 }
 
-.command button:hover {
-  color: var(--foreground);
+@media (hover: hover) {
+  .command button:hover {
+    color: var(--color-foreground);
+  }
 }
 
 .command button:focus-visible {
@@ -540,67 +446,42 @@ section {
   outline-offset: -2px;
 }
 
-/* Code's colours, as on ui.fabio.cv. */
+/* Code's colours, @fabiocv/ui's. */
 .code-keyword {
-  color: var(--keyword);
+  color: var(--code-keyword);
 }
 
 .code-string {
-  color: light-dark(oklch(46% 0.191 32.2), oklch(71.2% 0.191 32.2));
+  color: var(--code-string);
 }
 
-/* Copies the prompt that has an agent add the skills. */
+/*
+ * Copies the prompt that has an agent add the skills: @fabiocv/ui's Button,
+ * as on ui.fabio.cv's MCP pages. Its label lines up with the text above.
+ */
 .agent {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 36px;
-  padding: 0 8px 0 12px;
-  border: 0;
-  border-radius: var(--corner);
-  background: var(--subtle);
-  color: var(--foreground);
-  font: 500 14px/20px var(--sans);
-  cursor: pointer;
-  transition: background 0.15s ease-out;
+  margin-left: -8px;
 }
 
-@media (hover: hover) {
-  .agent:hover {
-    background: var(--disabled);
-  }
-}
-
-.agent:focus-visible {
-  outline: 2px solid var(--muted);
-  outline-offset: 2px;
-}
-
-.agent-copy {
-  color: var(--muted);
-}
-
+/* The license at the left, the credit at the right. */
 footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 8px 24px;
+  gap: 4px 16px;
   margin-top: 112px;
   padding-top: 24px;
-  color: var(--muted);
+  color: var(--color-foreground-muted);
   font-size: 14px;
   line-height: 20px;
-}
-
-footer nav {
-  display: flex;
-  gap: 20px;
 }
 
 footer a {
   text-decoration: none;
 }
 
-footer a:hover {
-  color: var(--foreground);
+@media (hover: hover) {
+  footer a:hover {
+    color: var(--color-foreground);
+  }
 }

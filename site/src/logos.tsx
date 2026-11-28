@@ -47,7 +47,7 @@ function Stencil({ size, children }: { size: number; children: ReactNode }) {
         width="32"
         height="32"
         rx="8"
-        fill="var(--disabled)"
+        fill="var(--color-foreground-disabled)"
         mask={`url(#${id})`}
       />
     </svg>

@@ -9,6 +9,9 @@
     "images": "node scripts/images.js",
     "deploy": "pnpm build && wrangler deploy"
   },
+  "dependencies": {
+    "@fabiocv/ui": "0.1.0"
+  },
   "devDependencies": {
     "@types/node": "26.1.1",
     "@types/react": "19.2.17",

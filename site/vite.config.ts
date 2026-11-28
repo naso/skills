@@ -1,6 +1,7 @@
 import { createReadStream } from 'node:fs';
 import { cp, readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { themeScript } from '@fabiocv/ui/theme-script';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import type { Plugin } from 'vite';
@@ -116,5 +117,15 @@ export default defineConfig({
     // Browsers with `light-dark()`, so it is kept rather than emulated.
     cssTarget: ['chrome123', 'safari17.5', 'firefox120'],
   },
-  plugins: [react(), skills()],
+  plugins: [
+    react(),
+    {
+      // Sets light or dark before the first paint.
+      name: 'theme-script',
+      transformIndexHtml: () => [
+        { tag: 'script', children: themeScript, injectTo: 'head-prepend' },
+      ],
+    },
+    skills(),
+  ],
 });
