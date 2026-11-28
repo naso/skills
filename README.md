@@ -3,18 +3,13 @@
 [![npm](https://img.shields.io/npm/v/@fabiocv/skills)](https://www.npmjs.com/package/@fabiocv/skills)
 
 Interface, interaction design and UX skills for coding agents, grouped by
-kind. Each is a folder in `skills/<kind>/`, with its `SKILL.md`.
+kind.
 
-[`site/`](site) is the minisite at https://skills.fabio.cv. It lists each
-skill with its `metadata.summary` and serves its files for the install prompt,
-so a new skill shows there once the site is built and deployed:
-`pnpm install && pnpm run deploy` in `site/`.
-
-[`cli/`](cli) is [`@fabiocv/skills`](https://www.npmjs.com/package/@fabiocv/skills) on npm, which adds the skills to your coding
-agents with `npx @fabiocv/skills`. It runs the
-[skills CLI](https://github.com/vercel-labs/skills) on this repository, so a
-new skill needs no new release: only a change to the CLI itself does, with
-`npm publish` in `cli/`.
+| Folder              | What it is                                                                                                                                                                                                                    | To ship a change                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [`skills/`](skills) | The skills. Each is a folder in `skills/<kind>/`, with its `SKILL.md`.                                                                                                                                                        | Push it. The CLI reads this repository, so a new skill needs no new release.                          |
+| [`site/`](site)     | The minisite at https://skills.fabio.cv. It lists each skill with its `metadata.summary` and serves its files for the install prompt.                                                                                         | `pnpm install && pnpm run deploy` in `site/`. A new skill shows there only once the site is deployed. |
+| [`cli/`](cli)       | [`@fabiocv/skills`](https://www.npmjs.com/package/@fabiocv/skills) on npm. `npx @fabiocv/skills` adds the skills to your coding agents by running the [skills CLI](https://github.com/vercel-labs/skills) on this repository. | `npm publish` in `cli/`, only when the CLI itself changes.                                            |
 
 ## Interaction design
 
