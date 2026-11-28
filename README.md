@@ -8,6 +8,12 @@ skill with its `metadata.summary` and serves its files for the install prompt,
 so a new skill shows there once the site is built and deployed:
 `pnpm install && pnpm run deploy` in `site/`.
 
+[`cli/`](cli) is `@fabiocv/skills` on npm, which adds the skills to your coding
+agents with `npx @fabiocv/skills`. It runs the
+[skills CLI](https://github.com/vercel-labs/skills) on this repository, so a
+new skill needs no new release: only a change to the CLI itself does, with
+`npm publish` in `cli/`.
+
 ## Interaction design
 
 How an interface behaves under the hand: tracking, resistance, springs and the

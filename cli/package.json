@@ -1,0 +1,36 @@
+{
+  "name": "@fabiocv/skills",
+  "version": "0.1.0",
+  "description": "Interface, interaction design and UX skills for coding agents.",
+  "keywords": [
+    "skills",
+    "agent skills",
+    "claude code",
+    "interaction design",
+    "ux"
+  ],
+  "license": "MIT",
+  "author": "Fabio Azevedo (https://fabio.cv)",
+  "homepage": "https://skills.fabio.cv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naso/skills.git",
+    "directory": "cli"
+  },
+  "type": "module",
+  "bin": {
+    "fabiocv-skills": "bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "dependencies": {
+    "skills": "1.9.1"
+  },
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -58,7 +58,7 @@ export function Install() {
   return (
     <div className="install">
       <AddToAgent prompt={installPrompt()} />
-      <Command code="npx skills add naso/skills" />
+      <Command code="npx @fabiocv/skills" />
     </div>
   );
 }
