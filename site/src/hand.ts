@@ -264,4 +264,11 @@ export const GLYPHS: Record<string, [advance: number, strokes: string]> = {
   ],
   "'": [340, '211 794 170 611'],
   '-': [513, '126 293 268 296 375 318'],
+  // Not among the glyphs taken from the font: drawn to match them, as on
+  // ui.fabio.cv and skedrick.fabio.cv.
+  '@': [
+    800,
+    '500 420 400 500 270 470 190 350 175 210 230 110 320 110 420 220 500 420 480 240 490 120 560 60 660 110 740 250 750 440 680 620 540 720 370 720 210 640 90 500 30 310 50 110 150 -60 310 -140 480 -130 600 -70',
+  ],
+  '/': [430, '20 -130 130 130 260 480 380 800'],
 };

@@ -16,5 +16,5 @@ document.head.append(style);
 document.documentElement.classList.add('dark');
 
 createRoot(document.getElementById('root')!).render(
-  <OgImage name="Skills" summary={SUMMARY} Logo={SkillsLogo} />,
+  <OgImage name="@fabiocv/skills" summary={SUMMARY} Logo={SkillsLogo} />,
 );
