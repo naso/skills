@@ -1,4 +1,6 @@
+import { Button } from '@fabiocv/ui/button';
 import { Highlight, highlightFrame, useHighlight } from '@fabiocv/ui/highlight';
+import { ArrowRight } from '@fabiocv/ui/icons';
 
 import { Install, Shell } from './shell';
 import { GITHUB, KIND_LIST } from './skills';
@@ -75,6 +77,23 @@ export function HomePage() {
           ))}
         </div>
       </section>
+    </Shell>
+  );
+}
+
+/** The page any other path shows, as skedrick.fabio.cv's. */
+export function NotFoundPage() {
+  return (
+    <Shell>
+      <div className="hero">
+        <div className="lead">
+          <h1>There’s nothing here</h1>
+          <p>The page you’re looking for doesn’t exist.</p>
+        </div>
+        <Button className="open" href="/" trailingIcon={<ArrowRight />}>
+          Go to Skills
+        </Button>
+      </div>
     </Shell>
   );
 }

@@ -1,8 +1,8 @@
-import { StrictMode } from 'react';
+import { StrictMode, type ReactNode } from 'react';
 import { ThemeProvider } from '@fabiocv/ui/theme';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 
-import { HomePage, SUMMARY } from './home';
+import { HomePage, NotFoundPage, SUMMARY } from './home';
 import { OG } from './images';
 import { SkillsLogo } from './logos';
 import { SITE } from './skills';
@@ -34,14 +34,29 @@ export function render() {
       `<link rel="canonical" href="${SITE}/" />`,
       `<link rel="icon" href="/favicon.svg" type="image/svg+xml" />`,
     ].join('\n    '),
-    html: renderToString(
-      <StrictMode>
-        <ThemeProvider>
-          <HomePage />
-        </ThemeProvider>
-      </StrictMode>,
-    ),
+    html: page(<HomePage />),
   };
+}
+
+/** The page any other path shows, as HTML, with its meta. */
+export function notFound() {
+  return {
+    meta: [
+      `<title>Not found – @fabiocv/skills</title>`,
+      `<meta name="robots" content="noindex" />`,
+      `<link rel="icon" href="/favicon.svg" type="image/svg+xml" />`,
+    ].join('\n    '),
+    html: page(<NotFoundPage />),
+  };
+}
+
+/** A page as HTML, in the theme. */
+function page(content: ReactNode) {
+  return renderToString(
+    <StrictMode>
+      <ThemeProvider>{content}</ThemeProvider>
+    </StrictMode>,
+  );
 }
 
 /** The logo as a favicon, its grey following the system's theme. */

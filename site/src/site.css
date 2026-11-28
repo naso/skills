@@ -244,6 +244,12 @@ p {
   }
 }
 
+/* The 404's way home, its label in line with the text above, as on
+   skedrick.fabio.cv. */
+.open {
+  margin-inline: -8px;
+}
+
 .hero + section {
   margin-top: 80px;
 }

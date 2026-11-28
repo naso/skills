@@ -1,16 +1,25 @@
-// Renders the page into index.html, so it shows before its script runs, and
-// the favicon from the logo.
+// Renders the pages into index.html and 404.html, so they show before their
+// script runs, and the favicon from the logo.
 import { readFile, rm, writeFile } from 'node:fs/promises';
 
-const { render, favicon, SITE } = await import('../dist-server/server.js');
+const { render, notFound, favicon, SITE } = await import(
+  '../dist-server/server.js',
+);
 const template = await readFile('dist/index.html', 'utf8');
-const { meta, html } = render();
 
 // Functions, so a `$` in the page is not read as a pattern.
-const page = template
-  .replace(/<!--meta-->[\s\S]*<!--\/meta-->/, () => meta)
-  .replace('<!--app-->', () => html);
-await writeFile('dist/index.html', page);
+const fill = ({ meta, html }, root = '<div id="root">') =>
+  template
+    .replace(/<!--meta-->[\s\S]*<!--\/meta-->/, () => meta)
+    .replace('<div id="root">', () => root)
+    .replace('<!--app-->', () => html);
+
+await writeFile('dist/index.html', fill(render()));
+// What any other path answers with, as skedrick.fabio.cv's.
+await writeFile(
+  'dist/404.html',
+  fill(notFound(), '<div id="root" data-page="not-found">'),
+);
 
 await writeFile('dist/favicon.svg', favicon());
 await writeFile(

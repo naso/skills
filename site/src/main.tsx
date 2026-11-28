@@ -4,17 +4,17 @@ import { StrictMode } from 'react';
 import { ThemeProvider } from '@fabiocv/ui/theme';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 
-import { HomePage } from './home';
+import { HomePage, NotFoundPage } from './home';
 
 import './site.css';
 
 const root = document.getElementById('root')!;
+// `404.html` says so on its root, and answers whatever path was asked for.
+const missing = root.dataset.page === 'not-found';
 const app = (
   <StrictMode>
     {/* Follows the system's light or dark, as the theme script set it. */}
-    <ThemeProvider>
-      <HomePage />
-    </ThemeProvider>
+    <ThemeProvider>{missing ? <NotFoundPage /> : <HomePage />}</ThemeProvider>
   </StrictMode>
 );
 
