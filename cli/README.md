@@ -1,5 +1,7 @@
 # @fabiocv/skills
 
+[![GitHub](https://img.shields.io/badge/GitHub-naso%2Fskills-181717?logo=github)](https://github.com/naso/skills)
+
 Interface, interaction design and UX skills for coding agents. The list is at
 [skills.fabio.cv](https://skills.fabio.cv).
 
