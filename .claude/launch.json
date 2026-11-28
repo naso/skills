@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-dev",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd site && exec ./node_modules/.bin/vite --port 5177 --strictPort"
+      ],
+      "port": 5177
+    },
+    {
+      "name": "site-preview",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "cd site && exec ./node_modules/.bin/vite preview --port 4318 --strictPort"
+      ],
+      "port": 4318
+    }
+  ]
+}
